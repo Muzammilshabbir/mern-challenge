@@ -7,8 +7,8 @@ export default function Card({ categories }) {
     return (
         categories.map((category) => (
             <div className={style.card}>
-                <img src={category.img} alt="dasd" />
-                <div style={{ marginTop:'40px' }}>
+                <div className={style.imgContainer}>
+                    <img src={category.img} alt="categoryimage"/>
                     <Link to={category.path}><Button value={category.title} /></Link>
                 </div>
             </div>

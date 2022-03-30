@@ -1,17 +1,16 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk, createSelector } from '@reduxjs/toolkit'
 import API from '../.././services/api'
 
 const api = new API(true)
 
-// import type { RootState } from '../../app/store'
 const initialState = {
     planets: [],
     // status: 'idle',
     // error: null,
-  }
+}
 
 export const fetchPlanets = createAsyncThunk('planets', async () => {
-    const {data} = await api.getAll('planets')
+    const { data } = await api.getAll('planets')
     return data.results
 })
 
@@ -20,13 +19,18 @@ const planetSlice = createSlice({
     initialState: initialState,
     reducers: {},
     extraReducers: {
+
+        [fetchPlanets.pending]: (state, action) => {
+
+            console.log('pending', action)
+        },
+
         [fetchPlanets.fulfilled]: (state, action) => {
-            state.planets= action.payload
-            // return action.payload
+            state.planets = action.payload
         },
     },
 })
 
 export default planetSlice.reducer
 
-export const planets = (state) => state.planets
+export const selectplanets = createSelector((state) => state.planets)

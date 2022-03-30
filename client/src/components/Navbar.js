@@ -5,16 +5,16 @@ import API from '../services/api'
 export default function Navbar() {
 
     const navigate = useNavigate()
-    const api = new API;
+    const api = new API();
     const handleLogout = async () => {
 
         try {
-            const { data } = await api.post('logout')
-                localStorage.clear();
+            await api.post('logout')
+            localStorage.clear();
             navigate('/')
 
         } catch (err) {
-            console.log(err);
+            alert(err.message)
         }
 
     }

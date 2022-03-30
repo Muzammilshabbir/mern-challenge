@@ -1,4 +1,3 @@
-import './App.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Auth from './components/authentication/Auth'
 import Dashboard from './components/Dashboard'
@@ -7,14 +6,12 @@ import Login from './components/authentication/Login'
 import Starships from './containers/Starships'
 import Vehicles from './containers/Vehicles'
 import Planets from './containers/Planets'
-import Nav from './components/Navbar'
 
 function App() {
 
   return (
     <>
       <BrowserRouter>
-        <Nav/>
         <Routes>
           <Route path="/" element={<Auth/>}>
               <Route index element={<Login/>}/>

@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate, Outlet } from 'react-router-dom'
+import Nav from './Navbar'
+
 export default function Layout() {
 
   const token = localStorage.getItem('_token')
@@ -15,8 +17,9 @@ export default function Layout() {
   }, [navigate, token])
 
   return (
-    <div>
+    <>
+      <Nav/>
       <Outlet />
-    </div>
+    </>
   )
 }

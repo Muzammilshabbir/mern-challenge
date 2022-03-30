@@ -10,14 +10,22 @@ export default function Login() {
 
   const [user, setUser] = useState({ email: "", password: "" })
 
-  const handleSubmit = async(event) => {
+  const handleSubmit = async (event) => {
+    if (!user.email || !user.password) {
+      alert("All fields are required")
+    }
 
     event.preventDefault()
-    const { data } = await api.post('/login', user)
+    try {
 
-    localStorage.setItem("_token", data.token)
+      const { data } = await api.post('/login', user)
+      localStorage.setItem("_token", data.token)
+      navigate('/dashboard')
 
-    navigate('/dashboard')
+    } catch (err) {
+      alert(err.response?.data?.error)
+    }
+
   }
   return (
     <div className={style.loginContainer}>
@@ -36,7 +44,7 @@ export default function Login() {
                 <input type="password" name="pass" placeholder="Password" onChange={(e) => setUser({ ...user, password: e.target.value })} />
               </div>
 
-              <Button handleSubmit={handleSubmit} value="Login"/>         
+              <Button handleSubmit={handleSubmit} value="Login" />
             </div>
           </div>
         </div>

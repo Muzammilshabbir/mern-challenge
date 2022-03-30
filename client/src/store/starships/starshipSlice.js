@@ -11,7 +11,6 @@ const initialState = {
 
 export const fetchStarships = createAsyncThunk('starships', async () => {
     const {data} = await api.getAll('starships')
-    console.log('data',data)
     return data.results
 })
 
