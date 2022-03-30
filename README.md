@@ -1,7 +1,9 @@
 Go to mern-challenge/server
 
 run "npm install"
+
 run "npm install -g mongoose-data-seed"
+
 run "md-seed run" to create user
 
 run "npm start"
